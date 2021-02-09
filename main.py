@@ -13,10 +13,10 @@ class Comment(HasTraits):
     comment = Str()
     result = Str()
     analyse = Button()
-    methods = Enum('Vectorisation Technique', 'Term Frequency-Inverse Document Frequency')
+    methods = Enum('Count Vectorisation Technique', 'Term Frequency-Inverse Document Frequency')
 
     def _analyse_changed(self):
-        if self.methods == 'Vectorisation Technique':    
+        if self.methods == 'Count Vectorisation Technique':    
             if self.comment == '':
                 self.result = "No comment was entered."
             else:
@@ -66,7 +66,7 @@ x_test_data_new_cv=count_vector.transform(x_test_data)
 
 predictions = dict()
 
-CommentView = View(Item(name = "comment", springy=True, style='custom'), Item('result', show_label=False, style='readonly'), Item(name="methods", editor=EnumEditor(values={'Vectorisation Technique' : '1. Vectorisation Technique', 'Term Frequency-Inverse Document Frequency' : '2. Term Frequency-Inverse Document Frequency'})), Item(name="analyse", show_label=False, editor=ButtonEditor(label="Analyse")), buttons = [CancelButton], title="Insert Comment", resizable=True)
+CommentView = View(Item(name = "comment", springy=True, style='custom'), Item('result', show_label=False, style='readonly'), Item(name="methods", editor=EnumEditor(values={'Count Vectorisation Technique' : '1. Count Vectorisation Technique', 'Term Frequency-Inverse Document Frequency' : '2. Term Frequency-Inverse Document Frequency'})), Item(name="analyse", show_label=False, editor=ButtonEditor(label="Analyse")), buttons = [CancelButton], title="Insert Comment", resizable=True)
 
 if  __name__ == "__main__":
    comment = Comment()
