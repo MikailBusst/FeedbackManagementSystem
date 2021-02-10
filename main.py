@@ -6,6 +6,7 @@ from traitsui.menu import *
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 
 class Comment(HasTraits):
     """ Comment object """
@@ -33,12 +34,12 @@ class Comment(HasTraits):
             if self.comment == '':
                 self.result = "No comment was entered."
             else:
-                ess_model = RandomForestClassifier()
-                ess_model.fit(X_train_data_new_tfidf,Y_train_data)                             
+                svm_model = SVC()
+                svm_model.fit(X_train_data_new_tfidf,Y_train_data)                             
                 review=self.comment
                 new_test_transform = tfidf_vector.transform([review])        
 
-                if ess_model.predict(new_test_transform):
+                if svm_model.predict(new_test_transform):
                     self.result="Good"
                 else :
                     self.result="Bad"
